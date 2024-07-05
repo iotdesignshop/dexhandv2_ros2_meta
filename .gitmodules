@@ -1,0 +1,3 @@
+[submodule "src/dexhandv2_description"]
+	path = src/dexhandv2_description
+	url = git@github.com:iotdesignshop/dexhandv2_description.git
