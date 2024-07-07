@@ -1,5 +1,5 @@
 {
-    "cmake.sourceDirectory": "/home/tshumay/Dev/dexhandv2_ros2_meta/src/dexhandv2_ros2_control",
+    "cmake.sourceDirectory": "/home/tshumay/Dev/dexhandv2_ros2_meta/src/dexhandv2_control",
     "ros.distro": "humble",
     "ros.rosSetupScript": "/opt/ros/humble/install/setup.bash",
     "ros.isolateEnvironment": false,
