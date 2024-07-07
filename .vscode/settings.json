@@ -1,0 +1,16 @@
+{
+    "cmake.sourceDirectory": "/home/tshumay/Dev/dexhandv2_ros2_meta/src/dexhandv2_ros2_control",
+    "ros.distro": "humble",
+    "ros.rosSetupScript": "/opt/ros/humble/install/setup.bash",
+    "ros.isolateEnvironment": false,
+    "python.autoComplete.extraPaths": [
+        "/home/tshumay/Dev/dexhandv2_ros2_meta/install/dexhandv2_description/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/tshumay/Dev/dexhandv2_ros2_meta/install/dexhandv2_description/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}
