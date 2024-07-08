@@ -12,5 +12,9 @@
         "/home/tshumay/Dev/dexhandv2_ros2_meta/install/dexhandv2_description/lib/python3.10/site-packages",
         "/opt/ros/humble/lib/python3.10/site-packages",
         "/opt/ros/humble/local/lib/python3.10/dist-packages"
-    ]
+    ],
+    "files.associations": {
+        "vector": "cpp",
+        "functional": "cpp"
+    }
 }
