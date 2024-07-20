@@ -109,30 +109,23 @@ ros2 launch dexhandv2_description display.launch.py
 
 ## Using DexHand Hardware
 
-The DexHand hardware is also open source and can be made with relatively inexpensive parts and 3D printing. If you haven't already visited the site, you can get more information on this at http://www.dexhand.org.
+Information on the purchase of DexHand V2 hardware is available at http://www.dexhand.com.
 
-Firmware is provided for the DexHand to run on the Arduino Nano RP2040 Connect, which is a Raspberry Pi Pico-based board available from Arduino. The firmware and a Python interface for connecting to it and testing it is provided in the [dexhand-ble package](https://github.com/iotdesignshop/dexhand-ble) on GitHub. 
+The [**dexhandv2_control**](https://github.com/iotdesignshop/dexhandv2_control) ROS 2 package provides everything needed to connect to a DexHand V2 device via USB. There are two nodes provided by the package:
 
-Assuming you have a working DexHand, and the firware installed. The interface between ROS 2 and the DexHand firmware is provided by the [dexhand_usb_serial package](https://github.com/iotdesignshop/dexhand_usb_serial). This package creates a bridge for sending commands across the USB port to the DexHand hardware. 
+- **native_messaging Node** - Provides a mapping between ROS 2 topics and the native messaging system of the DexHand SDK. This is the fastest and most direct method for controlling DexHand V2 hardware via ROS.
+- **high_level_control Node** - Provides an abstraction layer which allows you to communicate with virtual Servo objects, or via a joint angle control system which subscribes to ROS 2 joint_state messages.
 
-As noted above, the Dexhand gesture controller package actually generates hardware messages as well as simulation events for driving the joints in RVIZ2. To start streaming these commands to the DexHand hardware, all you need to do is to start the USB Serial Node.
-
-To do so, launch the Dexhand gesture controller as per the instructions above, then open an additional terminal window, source your workspace environment and run the following command (assuming your Arduino board is connected to /dev/ttyACM0, which is the default - you can override this on the command line if it is not):
-
-```
-ros2 run dexhand_usb_serial usb_serial
-```
-
-With that node running - events from the gesture controller should stream to the hand hardware as well as the simulated hands.
+All of these options and usage of the hardware control nodes are covered in detail in the README found in the [**dexhandv2_control**](https://github.com/iotdesignshop/dexhandv2_control) repo.
 
 
 ## MANUS VR Glove Support
 
-We recently added support for the MANUS VR Glove SDK in the DexHand packages. This is an optional install as it does require authenticated access to download and install the MANUS SDK, so we didn't want to just assume that by default. However, if you do have MANUS VR Gloves and an account, you can use them to control the DexHand Simulator and Hardware. 
+We recently added support for the MANUS VR Glove SDK in the DexHand packages. This is an optional install as it does require authenticated access to download and install the MANUS SDK, so we didn't want to just assume that by default. However, if you do have MANUS VR Gloves and an account, you can use them to control the DexHand V1/V2 Simulator and Hardware. 
 
 [<img src="https://github.com/iotdesignshop/dexhand_ros2_meta/assets/2821763/1aa798ca-7fbe-4b78-8a0f-3a43b02b361b" width="600">](https://www.youtube.com/watch?v=Wlhi0QKMN1o)
 
-Check out our example above of the MANUS VR Gloves controlling our RVIZ 2 based sim for the DexHand.
+Check out our example above of the MANUS VR Gloves controlling our RVIZ 2 based sim for the DexHand V1.
 
 
 ### Installation Process
@@ -141,23 +134,18 @@ We assume you have already completed the installation process described at the t
 
 #### Adding Manus ROS Nodes to Your Workspace
 
-Change back into the directory where you cloned the dexhand_ros2_meta package and make the __setup_manus.sh__ script executable:
+Change back into the directory where you cloned the dexhand_ros2_meta package, and cd into the /src folder there:
 
 ```
-cd dexhand_ros2_meta
-chmod +x scripts/setup_manus.sh
+cd <Your Dexhand V2 Workspace Path>
+cd src
 ```
 
-Run the script with the same argument showing where you created your DexHand workspace:
+Clone the manus_ros2 repo and dexhandv2_manus repos into the /src folder:
 ```
-scripts/setup_manus.sh <DexHand Workspace Path>
+git clone https://github.com/iotdesignshop/manus_ros2.git
+git clone https://github.com/iotdesignshop/dexhandv2_manus.git
 ```
-
-For example:
-```
-scripts/setup_manus.sh ~/dexhand_ws
-```
-
 
 #### Installing the Manus SDK
 
@@ -189,7 +177,7 @@ manus_ros2/
 Once installation is complete, you can switch to your workspace, build the new packages, source the environment and you should be ready to go:
 ```
 cd <Your Workspace Path>
-colcon build --symlink-install
+colcon build
 source install/setup.bash
 ```
 
@@ -197,7 +185,7 @@ source install/setup.bash
 
 To launch the Manus nodes along with a simulation of the DexHand for testing, you can run:
 ```
-ros2 launch dexhand_manus simulation.launch.py
+ros2 launch dexhandv2_manus simulation.launch.py
 ```
 
 __NOTE: The Manus SDK requires Manus Core to be running on a Windows PC on the same network as the client__. We have had pretty good results running Linux in a Virtual Machine on a Windows PC, and that may be a good way to get started. Manus plans to release a Linux version of Manus Core in the future, and we'll update the instructions when that happens.__
