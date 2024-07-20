@@ -64,6 +64,11 @@ Then update the git submodules:
 git submodule update --init --recursive
 ```
 
+Source your base ROS 2 environment:
+```
+source /opt/ros/humble/setup.bash
+```
+
 Then, install all the dependencies using rosdep:
 ```
 rosdep install --from-paths src --ignore-src -r -y --rosdistro humble
