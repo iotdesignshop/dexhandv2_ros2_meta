@@ -145,7 +145,7 @@ Clone the manus_ros2 repo and dexhandv2_manus repos into the /src folder:
 ```
 git clone https://github.com/iotdesignshop/manus_ros2.git
 git clone https://github.com/iotdesignshop/dexhandv2_manus.git
-git clone https://github.com/iotdesignshop/dexhand_manus_gui.git
+git clone https://github.com/iotdesignshop/dexhandv2_manus_gui.git
 ```
 
 #### Installing the Manus SDK
